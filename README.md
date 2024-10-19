@@ -23,7 +23,46 @@ the simplest is to use Homebrew
 brew install adr-tools
 ```
 
+## Build
+
+While we don't have any scripts or Dockerfiles, your simplest option is
+
+```shell
+go mod tidy
+go test ./...
+go build -v ./...
+```
+
+If you want an executable, you can do
+
+```shell
+go build -o dist/example-service main.go
+```
+
+## Run
+
+To run the executable from the last step
+
+```shell
+chmod +x dist/example-service
+./dist/example-service
+```
+
+If you want a JIT compiled version
+
+```shell
+go run main.go
+```
+
+And you test that it works 
+
+```shell
+curl http://localhost:8080/
+```
+which should respond with `Hello, World!`
+
 ## ADRs
 
 - [Record architecture decisions](doc/adr/0001-record-architecture-decisions.md)
-- [dsaa](doc/adr/0002-use-gitlint-instead-of-commitlint.md)
+- [Semantic Releases using go-semantic-release](doc/adr/0002-semantic-releases-using-go-semantic-release.md)
+- [Use gitlint instead of commitlint](doc/adr/0003-use-gitlint-instead-of-commitlint)
