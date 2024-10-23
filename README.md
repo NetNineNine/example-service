@@ -13,10 +13,10 @@ default. Otherwise, find installation instructions [here](https://pip.pypa.io/en
 pip install pre-commit
 pre-commit install --hook-type commit-msg
 ```
-We make use of Architecture Decision Records (as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions)) 
-to track any significant decisions made during the development of this service. 
+We make use of Architecture Decision Records (as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions))
+to track any significant decisions made during the development of this service.
 
-They are most easily managed using [adr-tools](https://github.com/npryce/adr-tools/blob/master/INSTALL.md). On Linux and MacOS 
+They are most easily managed using [adr-tools](https://github.com/npryce/adr-tools/blob/master/INSTALL.md). On Linux and MacOS
 the simplest is to use Homebrew
 
 ```shell
@@ -54,7 +54,7 @@ If you want a JIT compiled version
 go run main.go
 ```
 
-And you test that it works 
+And you test that it works
 
 ```shell
 curl http://localhost:8080/
