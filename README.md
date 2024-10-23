@@ -16,11 +16,16 @@ pre-commit install --hook-type commit-msg
 We make use of Architecture Decision Records (as [described by Michael Nygard](http://thinkrelevance.com/blog/2011/11/15/documenting-architecture-decisions))
 to track any significant decisions made during the development of this service.
 
-They are most easily managed using [adr-tools](https://github.com/npryce/adr-tools/blob/master/INSTALL.md). On Linux and MacOS
-the simplest is to use Homebrew
+They are most easily managed using [adr-tools](https://github.com/npryce/adr-tools/blob/master/INSTALL.md). On Linux and MacOS the simplest is to use Homebrew.
 
 ```shell
 brew install adr-tools
+```
+
+While we are busy, it would be useful to install `golangci-lint` locally as well, since pre-commit will use this.
+
+```shell
+brew install golangci-lint
 ```
 
 ## Build
