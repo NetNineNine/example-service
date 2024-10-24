@@ -14,7 +14,7 @@ RUN go mod tidy
 
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -X main.version=${Version} -X main.commitSHA=${FullCommit} -X main.buildDate=${Date} -o /example-service
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w -X main.version=${Version} -X main.commitSHA=${FullCommit} -X main.buildDate=${Date}" -o /example-service
 
 # Run the tests in the container
 FROM build-stage AS run-test-stage
