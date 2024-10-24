@@ -8,13 +8,15 @@ import (
 	"time"
 )
 
+//nolint:gochecknoglobals // need these global to set during build
 var (
 	version   string
 	commitSHA string
 	buildDate string
+	timeout   = 3 * time.Second
 )
 
-func helloHandler(w http.ResponseWriter, r *http.Request) {
+func helloHandler(w http.ResponseWriter, _ *http.Request) {
 	fmt.Fprintln(w, "Hello, World!")
 }
 
@@ -31,7 +33,14 @@ func main() {
 		buildDate = time.Now().Format(time.RFC3339)
 	}
 	logger.Info(fmt.Sprintf("Version: %s, commitSHA: %s, buildDate: %s", version, commitSHA, buildDate))
-	if err := http.ListenAndServe(":8080", nil); err != nil {
-		slog.Error("Could not start server", "error", err)
+	server := &http.Server{
+		Addr:              ":8080",
+		ReadHeaderTimeout: timeout,
+	}
+
+	err := server.ListenAndServe()
+	if err != nil {
+		logger.Error("Could not start server", "error", err)
+		panic(err)
 	}
 }

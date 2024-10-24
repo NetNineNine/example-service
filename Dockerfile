@@ -3,6 +3,10 @@
 # Build the application from source
 FROM golang:1.23 AS build-stage
 
+ARG Version
+ARG FullCommit
+ARG Date
+
 WORKDIR /app
 
 COPY go.mod ./
@@ -10,7 +14,7 @@ RUN go mod tidy
 
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o /example-service
+RUN CGO_ENABLED=0 GOOS=linux go build -X main.version=${Version} -X main.commitSHA=${FullCommit} -X main.buildDate=${Date} -o /example-service
 
 # Run the tests in the container
 FROM build-stage AS run-test-stage
