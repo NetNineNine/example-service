@@ -1,0 +1,16 @@
+on:
+  schedule:
+    - cron: "0 8 * * *"
+name: Daily Jobs
+jobs:
+  renovate:
+    name: Renovate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Run Renovate
+        uses: docker://renovate/renovate:latest
+        env:
+          RENOVATE_REPOSITORIES: NetNineNine/example-service
+          RENOVATE_TOKEN: ${{ secrets.RENOVATE_TOKEN }}
