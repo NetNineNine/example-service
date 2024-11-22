@@ -1,0 +1,6 @@
+# Changes here will be overwritten by Copier
+_commit: v1.1.1-2-g36f091b
+_src_path: .
+github_account: NetNineNine
+project_description: Canonical example golang-service for Net Nine Nine
+project_name: example-service
