@@ -1,13 +1,5 @@
-# example-service
-Canonical example golang-service for Net Nine Nine
-
-To use this, you will need to [install Copier](https://copier.readthedocs.io/en/stable/#installation)
-
-And then you can create a new service using
-
-```shell
-copier copy https://github.com/NetNineNine/example-service path/to/destination
-```
+# {{project_name}}
+{{project_description}}
 
 ## Setup
 
@@ -36,10 +28,44 @@ While we are busy, it would be useful to install `golangci-lint` locally as well
 brew install golangci-lint
 ```
 
+## Build
+
+While we don't have any scripts or Dockerfiles, your simplest option is
+
+```shell
+go mod tidy
+go test ./...
+go build -v ./...
+```
+
+If you want an executable, you can do
+
+```shell
+go build -o dist/{{project_name}} main.go
+```
+
+## Run
+
+To run the executable from the last step
+
+```shell
+chmod +x dist/{{project_name}}
+./dist/{{project_name}}
+```
+
+If you want a JIT compiled version
+
+```shell
+go run main.go
+```
+
+And you test that it works
+
+```shell
+curl http://localhost:8080/
+```
+which should respond with `Hello, World!`
+
 ## ADRs
 
 - [Record architecture decisions](doc/adr/0001-record-architecture-decisions.md)
-- [Semantic Releases using go-semantic-release](doc/adr/0002-semantic-releases-using-go-semantic-release.md)
-- [Use gitlint instead of commitlint](doc/adr/0003-use-gitlint-instead-of-commitlint)
-
-[![Copier](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/copier-org/copier/master/img/badge/badge-grayscale-inverted-border-orange.json)](https://github.com/copier-org/copier)

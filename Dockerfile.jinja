@@ -14,7 +14,7 @@ RUN go mod tidy
 
 COPY *.go ./
 
-RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w -X main.version=${Version} -X main.commitSHA=${FullCommit} -X main.buildDate=${Date}" -o /example-service
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w -X main.version=${Version} -X main.commitSHA=${FullCommit} -X main.buildDate=${Date}" -o /{{project_name}}
 
 # Run the tests in the container
 FROM build-stage AS run-test-stage
@@ -25,10 +25,10 @@ FROM gcr.io/distroless/base-debian11:latest-amd64 AS build-release-stage
 
 WORKDIR /
 
-COPY --from=build-stage /example-service /example-service
+COPY --from=build-stage /{{project_name}} /{{project_name}}
 
 EXPOSE 8080
 
 USER nonroot:nonroot
 
-ENTRYPOINT ["/example-service"]
+ENTRYPOINT ["/{{project_name}}"]
